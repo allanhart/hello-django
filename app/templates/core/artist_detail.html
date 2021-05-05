@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    {{ artist.name }}
+    <h1 class="mb-4 text-2xl">{{ artist.name }}</h1>
+
+    <ul class="ml-6 list-disc">
+    {% for album in artist.album_set.all %}
+        <li>{{ album.name }}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}

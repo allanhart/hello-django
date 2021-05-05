@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <ul>
+    <ul class="ml-6 list-disc">
     {% for artist in artist_list %}
         <li>{{ artist.name }}</li>
     {% endfor %}
