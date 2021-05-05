@@ -20,23 +20,33 @@ class ApplicationUserAdmin(UserAdmin):
     filter_horizontal = ('groups', 'user_permissions',)
 
 
-@admin.register(Artist)
-class ArtistAdmin(admin.ModelAdmin):
-    fields = ('name',)
-    list_display = ('name',)
-    search_fields = ('name',)
+@admin.register(Song)
+class SongAdmin(admin.ModelAdmin):
+    fields = ('title', 'album')
+    list_display = ('title',)
+    search_fields = ('title',)
+
+
+class SongInline(admin.TabularInline):
+    model = Song
 
 
 @admin.register(Album)
 class AlbumAdmin(admin.ModelAdmin):
-    fields = ('name',)
+    fields = ('name', 'artist',)
+    inlines = (SongInline,)
     list_display = ('name',)
     search_fields = ('name',)
 
 
-@admin.register(Song)
-class SongAdmin(admin.ModelAdmin):
-    fields = ('title',)
-    list_display = ('title',)
-    search_fields = ('title',)
+class AlbumInline(admin.TabularInline):
+    model = Album
+
+
+@admin.register(Artist)
+class ArtistAdmin(admin.ModelAdmin):
+    fields = ('name',)
+    inlines = (AlbumInline,)
+    list_display = ('name',)
+    search_fields = ('name',)
 
